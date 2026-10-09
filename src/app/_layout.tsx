@@ -1,18 +1,43 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
+import {
+  PlusJakartaSans_400Regular, PlusJakartaSans_500Medium,
+  PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold
+} from '@expo-google-fonts/plus-jakarta-sans';
+import { useFonts } from 'expo-font';
+import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { useEffect, useState } from 'react';
+import "../global.css";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+  });
+  const [splashDone, setSplashDone] = useState(false);
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
 
-SplashScreen.preventAutoHideAsync();
+  let appReady = loaded && !error;
+  if (!loaded && !error) {
+    return null;
+  }
+  // {appReady && <Slot />}
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  // if (!splashDone) return (
+  //   <AnimatedSplash ready={appReady} onFinish={() => setSplashDone(true)} />
+  // )
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
-  );
+    <Stack initialRouteName='(app)'
+      screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(public)" />
+      <Stack.Screen name="(app)" />
+    </Stack>
+
+  )
 }
