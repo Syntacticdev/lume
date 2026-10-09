@@ -4,11 +4,8 @@ import { ArrowRight } from "lucide-react-native";
 import { cssInterop } from "nativewind";
 import { Pressable, Text, View } from "react-native";
 
-// lets expo-image accept className
 cssInterop(Image, { className: "style" });
 
-// Full class strings so Tailwind can detect them at build time.
-// (Never build these dynamically like `bg-[${color}]`.)
 const PASTELS = [
     "bg-[#FDE3D3]",
     "bg-[#FFD9E0]",
@@ -28,12 +25,11 @@ export function CategoryCard({ item, index, onPress }: Props) {
     return (
         <Pressable
             onPress={() => onPress?.(item)}
-            // API colors are runtime values, so they go in `style`; otherwise use a palette class
             style={item.tint ? { backgroundColor: item.tint } : undefined}
             className={`flex-1 aspect-square overflow-hidden rounded-[28px] p-[18px] active:scale-[0.97] ${item.tint ? "" : PASTELS[index % PASTELS.length]
                 }`}
         >
-            <Text className="text-lg font-bold text-[#1a1a1a]" numberOfLines={1}>
+            <Text className="text-h3 font-bold text-[#1a1a1a]" numberOfLines={1}>
                 {item.name}
             </Text>
             <Text className="mt-1 text-[13px] text-neutral-600">

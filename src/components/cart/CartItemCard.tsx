@@ -14,7 +14,7 @@ const CartItemCard = () => {
             <View className='flex-1 min-w-0'>
                 <Text numberOfLines={2} className='text-h3 font-jakarta-bold'>Vitamin C Glow Serum</Text>
                 <Text>30ml</Text>
-                <Text className='text-price  '>{priceFormat(18000)}</Text>
+                <Text className='text-h3'>{priceFormat(18000)}</Text>
             </View>
 
             <View className='flex-row items-center gap-2 border-2 border-sage rounded-card p-2'>

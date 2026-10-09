@@ -4,20 +4,14 @@ import { cn, priceFormat } from '@/libs/utils'
 import { Image } from 'expo-image'
 import { router } from 'expo-router'
 import { ChevronLeftIcon } from 'lucide-react-native'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 const Cart = () => {
     const paymentMethods = ["Card", "Transfer", "Pay on delivery"]
     const [selectedPM, setSelectedPM] = useState(paymentMethods[0])
 
-    useLayoutEffect(() => {
-        // const segment = useSegments()
-        // console.log(segment)
-        //   if(segment)
-
-
-    }, [])
+    
     return (
         <SafeScreen>
             <ScrollView
